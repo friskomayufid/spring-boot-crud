@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,10 +20,10 @@ public class Contact {
     private String id;
 
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
 
     private String phone;
 
@@ -30,4 +32,7 @@ public class Contact {
     @ManyToOne
     @JoinColumn(name = "username", referencedColumnName = "username")
     private User user;
+
+    @OneToMany(mappedBy = "contact")
+    private List<Address> addresses;
 }
