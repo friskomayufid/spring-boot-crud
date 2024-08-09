@@ -1,4 +1,5 @@
 package friskodev.restapispring.service;
+
 import friskodev.restapispring.entity.User;
 import friskodev.restapispring.model.RegisterUserRequest;
 import friskodev.restapispring.repository.UserRepository;
@@ -23,13 +24,12 @@ public class UserService {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private ValidationService validationService;
+
     @Transactional
     public void register(RegisterUserRequest request) {
-        Set<ConstraintViolation<RegisterUserRequest>> constraintViolations = validator.validate(request);
-        if (constraintViolations.size() != 0) {
-            // errors
-            throw new ConstraintViolationException(constraintViolations);
-        }
+        validationService.validate(request);
 
         if (userRepository.existsById(request.getUsername())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already exist");
