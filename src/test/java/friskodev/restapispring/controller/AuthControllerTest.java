@@ -2,11 +2,6 @@ package friskodev.restapispring.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import friskodev.restapispring.entity.User;
-import friskodev.restapispring.model.LoginUserRequest;
-import friskodev.restapispring.model.WebResponse;
-import friskodev.restapispring.repository.UserRepository;
-import friskodev.restapispring.security.BCrypt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +9,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import friskodev.restapispring.entity.User;
+import friskodev.restapispring.model.LoginUserRequest;
+import friskodev.restapispring.model.TokenResponse;
+import friskodev.restapispring.model.WebResponse;
+import friskodev.restapispring.repository.UserRepository;
+import friskodev.restapispring.security.BCrypt;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.MockMvcBuilder.*;
@@ -23,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AuthControllerTest {
+class AuthControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
